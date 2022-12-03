@@ -1,0 +1,13 @@
+{% extends 'books/l.html' %}
+
+{% block title %}Отказ в доступе{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>К сожалению, у вас нет доступа к данной функции</h1>
+    <form method="post">
+        {% csrf_token %}
+
+    </form>
+</div>
+{% endblock %}

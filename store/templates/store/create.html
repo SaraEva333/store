@@ -1,0 +1,18 @@
+{% extends 'books/l.html' %}
+
+{% block title %}Добавление книги{% endblock %}
+
+{% block content %}
+<div class="input">
+    <h1>Добавление книги</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.title}}<br>
+        {{form.author}}<br>
+        {{form.price}}<br>
+        {{form.data}}<br>
+        <span>{{error}}</span>
+        <button class="btn btn-success" type="submit">Добавить книгу</button>
+    </form>
+</div>
+{% endblock %}

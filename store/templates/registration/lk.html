@@ -1,0 +1,16 @@
+{% extends 'books/l.html' %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+<div class="input">
+    <h1>Личный кабинет</h1>
+   <form method="post">
+       {% csrf_token %}
+        {{form.username}}<br>
+        {{form.email}}<br>
+        {{form.first_name}}<br>
+       <button class="btn btn-success" type="submit">Обновить данные</button>
+    </form>
+</div>
+{% endblock %}

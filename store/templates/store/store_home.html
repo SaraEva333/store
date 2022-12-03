@@ -1,0 +1,61 @@
+{% extends 'books/l.html' %}
+
+{% block title %}Книги{% endblock %}
+{% block content %}
+
+<div class="features">
+    <h1>Книги</h1>
+    {% if store %}
+    {% for el in page_obj %}
+    <div class='alert alert-warning'>
+        <h3>{{el.title|upper}}</h3>
+        <p>{{el.author}}, {{el.data}}</p>
+        <p>{{el.price}} p.</p>
+        {#<a href = "{%url 'store-detail' el.id%}" class='btn btn-warning'>Больше информации</a>#}
+         <form action="{% url 'cart_add' el.id %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-success" type="submit">Добавить в корзину</button>
+        </form>
+        <a href="{%url 'store-update' el.id %}" class = 'btn btn-info'>Редактировать</a><br>
+        <a href="{%url 'store-delete' el.id %}" class = 'btn btn-danger'>Удалить</a><br>
+
+
+    </div>
+
+    {%endfor%}
+
+
+{% if page_obj.has_other_pages %}
+<nav class="list-pages">
+    <ul>
+{% if page_obj.has_previous %}
+<li class="page-num">
+	<a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+</li>
+{% endif %}
+
+        {% for p in paginator.page_range %}
+		{% if page_obj.number == p %}
+        <li class="page-num page-num-selected">{{ p }}</li>
+		{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+        <li class="page-num">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+		{% endif %}
+        {% endfor %}
+
+{% if page_obj.has_next %}
+<li class="page-num">
+	<a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+</li>
+{% endif %}
+
+    </ul>
+</nav>
+{% endif %}
+	</div>
+    {% else %}
+    <p>Сейчас мы не можем ничего вам предложить :(</p>
+    {%endif%}
+</div>
+{% endblock %}

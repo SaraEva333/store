@@ -1,0 +1,11 @@
+{% extends 'books/l.html' %}
+
+{% block title %}Спасибо!{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>Спасибо!</h1>
+    <p>Ваш заказ успешно оформлен! Номер вашего заказа:</p>
+        <h2><strong>{{ order.id }}</strong></h2>
+</div>
+{% endblock %}

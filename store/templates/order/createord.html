@@ -1,0 +1,23 @@
+{% extends 'books/l.html' %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+    <div class="order-info">
+        <h2>Your order</h2>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{ item.quantity }}x {{ item.product.title }}
+                    <span>${{ item.product.price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <h4>Total: ${{ cart.get_total_price }}</h4>
+    </div>
+    <form action="." method="post" class="features">
+        {{ form.as_p }}
+           <button class="btn btn-success" type="submit">Оплатить заказ</button>
+        {% csrf_token %}
+    </form>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'books/l.html' %}
+
+{% block title %}Выход из учетной записи{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>Вы действительно хотите выйти из учетной записи?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-info" type="submit">Да</button>
+    </form>
+</div>
+{% endblock %}

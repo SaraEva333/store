@@ -1,0 +1,46 @@
+{% extends 'books/l.html' %}
+
+{% block title %}Мои заказы{% endblock %}
+
+{% block content %}
+<div class="features">
+        {% if order %}
+    <h1>Мои заказы</h1>
+
+    <table class="cart">
+        <table border="1" bgcolor="#f1e9c5" cellspacing="20" cellpadding="20" align="center">
+     <thead>
+        <th>Номер заказа</th>
+        <th>Состав заказа</th>
+        <th> Цена </th>
+        <th>Количество</th>
+        <th>Дата</th>
+
+    </thead>
+    <tbody>
+    {% for item in orders %}
+    {% with product=item.product %}
+    {% with order=item.order %}
+
+          <tr>
+            <td>{{ item.order_id }}</td>
+              <td>{{ product.title }}</td>
+              <td>{{ product.price }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ order.updated }}</td>
+
+
+          </tr>
+    {% endwith %}
+    {% endwith %}
+{% endfor %}
+    </tbody>
+        </table>
+    </table>
+
+</div>
+{% else %}
+    <h1>Вы ещё не делали заказов :(</h1><br>
+    <p>Откройте каталог и выбирайте понравившиеся книги </p><br>
+{%endif%}
+{% endblock %}

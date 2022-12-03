@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'books/css/books.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+<body>
+    <aside>
+        <img src ="{% static 'books/img/computer-icons-book-clip-art-stack-of-bo_ad-2836-book-clip-png-2836_2189.png'%}" alt="Лого">
+        <span class="logo">Bookstore</span>
+        <h3>Навигация</h3>
+        <ul>
+            <a href="{% url 'store_home' %}"> <li><button class="btn btn-success">Магазин</button></li></a>
+            <a href="{% url 'create' %}"> <li><button class="btn btn-info">Добавить книгу</button></li></a>
+            <a href="{% url 'register' %}"> <li><button class="btn btn-info">Зарегистрироваться</button></li></a>
+            <a href="{% url 'login' %}"> <li><button class="btn btn-info">Авторизироваться</button></li></a>
+            {% if user.id != None %}
+            <div class='a'>
+                <a href="{% url 'lk' user.id %}"> <li><button class="btn btn-info">Мой профиль</button></li></a>
+                <a href="{% url 'Cart' %}"> <li><button class="btn btn-success">Корзина покупок</button></li></a>
+                <a href="{% url 'orders_check' %}"> <li><button class="btn btn-info">Мои заказы</button></li></a>
+                <a href="{% url 'logout' %}"> <li><button class="btn btn-danger">Выйти</button></li></a>
+
+
+            </div>
+            {% endif %}
+
+        </ul>
+    </aside>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
